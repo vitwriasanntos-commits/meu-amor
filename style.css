@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #081120;
+  color: white;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 92%;
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 0 120px;
+}
+
+/* EMOJIS FLUTUANTES */
+.floating {
+  position: fixed;
+  pointer-events: none;
+  opacity: .25;
+  z-index: 1;
+  font-size: 32px;
+}
+
+.alien { top: 15%; left: 6%; animation: floaty 6s infinite ease-in-out; }
+.alien2 { top: 75%; right: 6%; animation: floaty 8s infinite ease-in-out; }
+.squirrel { top: 50%; left: 4%; animation: floaty 7s infinite ease-in-out; }
+.squirrel2 { top: 30%; right: 5%; animation: floaty 5s infinite ease-in-out; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* BOTÃO DE MÚSICA */
+.sound-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.botao-musica {
+  background: #14223d;
+  color: #fff;
+  border: 2px solid white;
+  padding: 10px 15px;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.75rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+}
+
+/* BANNER RETANGULAR */
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-window {
+  max-width: 750px;
+  margin: 0 auto 30px;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  padding: 8px;
+}
+
+.ellie-art {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  image-rendering: pixelated;
+  border: 4px solid #fff;
+  box-shadow: 6px 6px 0 rgba(0,0,0,.5);
+}
+
+h1 {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 2.3rem;
+  line-height: 1.5;
+  color: #ffd6ea;
+  text-shadow: 4px 4px 0 black;
+  margin-top: 25px;
+}
+
+.subtitle {
+  font-family: 'VT323', monospace !important;
+  font-size: 1.6rem;
+  margin-top: 15px;
+  color: #d6e4ff;
+  line-height: 1.4;
+}
+
+/* JANELAS SISTEMA */
+.xp-window {
+  margin: 30px 0;
+  background: #ece9d8;
+  color: black;
+  border: 3px solid white;
+  box-shadow: 8px 8px 0 rgba(0,0,0,.4);
+  overflow: hidden;
+}
+
+.window-bar {
+  background: linear-gradient(to right, #245DDA, #5B9BFF);
+  color: white;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: .7rem;
+  padding: 12px;
+  border-bottom: 2px solid white;
+}
+
+.window-content {
+  padding: 25px;
+  font-size: 1.7rem;
+  line-height: 1.8;
+}
+
+.window-content p {
+  margin-bottom: 12px;
+  font-family: 'VT323', monospace !important;
+}
+
+/* MINIJOGO */
+.game-content {
+  background: #040a18;
+  color: #8ab4ff;
+}
+
+.game-header {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.game-screen {
+  background: #020610;
+  border: 2px dashed #245dda;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Jogador (Esquilo Pixel Art) */
+#player {
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  z-index: 5;
+}
+
+/* Classe disparada via JS para o pulo */
+.jump {
+  animation: playerJump 0.52s ease-out;
+}
+
+@keyframes playerJump {
+  0% { bottom: 10px; }
+  50% { bottom: 120px; }
+  100% { bottom: 10px; }
+}
+
+/* Obstáculo (ET Pixel Art vindo da direita) */
+#obstacle {
+  position: absolute;
+  bottom: 10px;
+  right: -50px;
+  width: 38px;
+  height: 38px;
+}
+
+/* Movimento do Obstáculo */
+.obstacle-move {
+  animation: blockMove 1.8s infinite linear;
+}
+
+@keyframes blockMove {
+  0% { right: -50px; }
+  100% { right: 100%; }
+}
+/* Botão de Seta para Celular/Clique */
+#jumpButton {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background: #245dda;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+}
+
+#jumpButton:active {
+  background: #143ca3;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+#gameOverScreen {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 10, 24, 0.9);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.game-over-text {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 1.8rem;
+  color: #ff5b5b;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 0 #000;
+}
+
+/* CONTADOR & TEXTOS */
+#contador {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 1.1rem;
+  color: #245dda;
+  display: block;
+  margin-top: 5px;
+}
+
+.status-line {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.database {
+  background: white;
+  border: 2px solid black;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.database p {
+  margin-bottom: 8px;
+  color: black;
+  font-size: 1.6rem;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.facts span {
+  background: #fff7b8;
+  color: black;
+  border: 2px solid black;
+  padding: 10px;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: .55rem;
+  box-shadow: 4px 4px 0 black;
+}
+
+.quote {
+  font-style: italic;
+  color: #2e4da8;
+}
+
+/* MEMORIES */
+.memories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.photo-card {
+  background: white;
+  border: 3px solid black;
+  padding: 10px;
+  box-shadow: 6px 6px 0 black;
+}
+
+.photo-header {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: .55rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.memory {
+  width: 260px;
+  display: block;
+  border: 3px solid black;
+}
+
+/* BOTÕES & LETTER */
+.pixel-btn {
+  background: #245DDA;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: .65rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 black;
+  width: 100%;
+}
+
+.letter {
+  display: none;
+  margin-top: 40px;
+  background: #ece9d8;
+  color: black;
+  border: 3px solid white;
+  box-shadow: 8px 8px 0 black;
+}
+
+.letter-content {
+  padding: 30px;
+  font-size: 1.7rem;
+  line-height: 1.8;
+}
+
+.letter h2 {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+.assinatura {
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+/* ENDING */
+.ending {
+  text-align: center;
+  margin-top: 120px;
+}
+
+#finalText {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 1rem;
+  color: #ffd6ea;
+  text-shadow: 4px 4px 0 black;
+}
+
+.save-file {
+  font-family: 'VT323', monospace !important;
+  font-size: 2rem;
+  margin-top: 15px;
+  color: #8ab4ff;
+}
+
+@media(max-width:700px) {
+  body { font-size: 1.2rem; }
+  .subtitle { font-size: 1rem; }
+  .window-content { font-size: 1.3rem; }
+  .memory { width: 100%; }
+  #finalText { font-size: .7rem; }
+  .save-file { font-size: 1.5rem; }
+}
